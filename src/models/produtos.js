@@ -16,3 +16,5 @@ class Produtos {
 }
 
 module.exports = new Produtos()
+
+//colocando comentário pra fazer commit

@@ -11,3 +11,4 @@ class produtosControllers {
 
 module.exports = new produtosControllers()
 
+// colocando comentário pra fazer commit

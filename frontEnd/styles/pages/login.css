@@ -1,0 +1,137 @@
+/* Ajuste a parte da esquerda da tela */
+.left_section_black { 
+    width:60%;
+    background: #1E1E1E;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 70px;
+    text-align: left;
+}
+
+
+.left_section_black h2 {
+    line-height: 1.4;
+    font-size: 25px;
+}
+
+.left_section_black .h2-1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+}
+
+.left_section_black .h2-2 {
+    font-weight: bold;
+}
+
+
+
+
+.right_section_email {
+    width: 60%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+/*Logo*/
+.right_section_email img {
+    width: 250px;
+    position: absolute; 
+    top: -20px; 
+    margin-bottom: 0; 
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) { 
+    .right_section_email img {
+        width: 80%; 
+        max-width: 200px; 
+    }
+}
+
+@media (max-width: 480px) { /* Para dispositivos com largura de tela de até 480px (ex. celulares) */
+    .right_section_email img {
+        width: 70%; 
+        max-width: 150px; 
+    }
+}
+
+
+/* Estilo para o título principal (h2) */
+.right_section_email h2 {
+    margin-bottom: 10px;
+    font-size: 38px; 
+    font-weight: 500; 
+    color: #1E1E1E;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 450px;
+}
+
+/*(label) */
+label {
+    text-align: left;
+    font-weight: 500;
+    font-size: 18px; /* Ajuste do tamanho da fonte para os rótulos */
+    color: #1E1E1E; /* Cor do texto mais forte */
+    margin-bottom: -10px;
+}
+
+/* Estilo do campo de entrada (input) */
+input {
+    width: 100%;
+    padding: 15px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: -10px;
+}
+
+/* Estilo do link de "Esqueceu a senha?" */
+a {
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: 500;
+    align-self: flex-end;
+}
+
+a span {
+    color: #91050B; 
+    font-weight: 500; 
+    text-decoration: underline; /* Adiciona o sublinhado */
+    text-decoration-color: #91050B; 
+}
+
+
+/* Estilo do botão */
+button {
+    background: #91050B;
+    color: white;
+    padding: 15px 70px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 25px;
+    width: auto;
+    display: block; /* Garante que o botão se comporte como um bloco */
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+    background: rgb(226, 3, 3);
+}

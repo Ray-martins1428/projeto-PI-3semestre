@@ -7,6 +7,14 @@ class produtosControllers {
         ?res.status(404).json({success:false, error: result.error})
         :res.status(200).json({success:true, values: result.values})
     }
+
+    async findById(req, res) {
+        const id = req.params.id
+        const result = await produtos.findById(id)
+        !result.validated
+            ? res.status(404).json({ success: false, error: result.error })
+            : res.status(200).json({ success: true, values: result.values })
+    }
 }
 
 module.exports = new produtosControllers()

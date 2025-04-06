@@ -2,14 +2,33 @@ const knex = require('../config/data')
 
 class Mesas {
     async findAll() {
-        try{
-            let mesas = await knex.select(['descricao', 'ocupada', 'status']).table('mesas').where({status:1})
-            return produtos.length > 0
-                ? {validated: true, values: produtos}
-                : {validated: true, values: undefined}
+        try {
+            let mesas = await knex
+                .select(['descricao', 'ocupada', 'status'])
+                .table('mesas')
+                .where({ status: 1 })
+
+            return mesas.length > 0
+                ? { validated: true, values: mesas }
+                : { validated: true, values: undefined }
+
         } catch (error) {
             console.log("Erro ao executar a query", error)
-            return {validated: false, error: error}
+            return { validated: false, error: error }
+        }
+    }
+
+    async findById(id) {
+        try {
+            const mesa = await knex('mesas')
+                .select(['descricao', 'ocupada', 'status'])
+                .where({ id_mesas: id, status: 1 })
+                .first()
+            return mesa
+                ? { validated: true, values: mesa }
+                : { validated: true, values: undefined }
+        } catch (error) {
+            return { validated: false, error: error }
         }
     }
 }

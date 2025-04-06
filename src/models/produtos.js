@@ -13,7 +13,23 @@ class Produtos {
             return {validated: false, error: error}
         }
     }
+
+    async findById(id) {
+        try {
+            const produto = await knex('produtos')
+                .select(['nome', 'descricao', 'volume', 'valor'])
+                .where({ id_produtos: id, status: 1 })
+                .first()
+            return produto
+                ? { validated: true, values: produto }
+                : { validated: true, values: undefined }
+        } catch (error) {
+            return { validated: false, error: error }
+        }
+    }
 }
+
+
 
 module.exports = new Produtos()
 

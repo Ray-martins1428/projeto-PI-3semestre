@@ -1,2 +1,4 @@
 node_modules/
 .env
+frmPagamentos.js
+frmPagamentosControllers.js

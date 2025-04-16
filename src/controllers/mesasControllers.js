@@ -16,8 +16,6 @@ class mesasControllers {
             ? res.status(404).json({ success: false, error: result.error })
             : res.status(200).json({ success: true, values: result.values })
     }
-
 }
 
 module.exports = new mesasControllers()
-

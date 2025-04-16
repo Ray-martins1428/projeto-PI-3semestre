@@ -1,6 +1,7 @@
 const knex = require('../config/data')
 
 class Mesas {
+
     async findAll() {
         try {
             let mesas = await knex
@@ -9,8 +10,8 @@ class Mesas {
                 .where({ status: 1 })
 
             return mesas.length > 0
-                ? { validated: true, values: mesas }
-                : { validated: true, values: undefined }
+                ? {validated: true, values: mesas}
+                : {validated: true, values: undefined}
 
         } catch (error) {
             console.log("Erro ao executar a query", error)

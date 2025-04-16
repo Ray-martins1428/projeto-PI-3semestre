@@ -26,7 +26,6 @@ class produtosControllers {
         ? res.status(201).json({sucess: true, message:'Produto cadastrado com sucesso.'})
         : res.status(404).json({sucess: false, message: result.error})
     }
-
 }
 
 module.exports = new produtosControllers()

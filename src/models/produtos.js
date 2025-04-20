@@ -19,6 +19,8 @@ class Produtos {
         }
     }
 
+// -----------------------------------------------------------------------------
+
     async findById(id) {
         try {
             const produto = await knex('produtos')
@@ -26,17 +28,21 @@ class Produtos {
                 .where({ id_produtos: id, status: 1 })
                 .first()
             return produto
-                ? { validated: true, values: produto }
-                : { validated: true, values: undefined }
+                ? {validated: true, values: produto}
+                : {validated: true, values: undefined}
         } catch (error) {
-            return { validated: false, error: error }
+            return {validated: false, error: error}
         }
     }
+
+// -----------------------------------------------------------------------------
 
     async create(nome, descricao, volume, valor){
         try {
             
-            await knex.insert({nome: nome, descricao: descricao, volume: volume, valor: valor}).table('produtos')
+            await knex
+            .insert({nome: nome, descricao: descricao, volume: volume, valor: valor})
+            .table('produtos')
             return{validated: true}
 
         } catch (error) {
@@ -44,10 +50,10 @@ class Produtos {
         }
     }
 
+    // -----------------------------------------------------------------------------
+
 }
 
 
 
 module.exports = new Produtos()
-
-//colocando comentário pra fazer commit

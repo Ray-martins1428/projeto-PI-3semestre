@@ -1,6 +1,9 @@
-/* Ajuste a parte da esquerda da tela */
+/* ============================= */
+/* SEÇÃO ESQUERDA (FUNDO PRETO) */
+/* ============================= */
+
 .left_section_black { 
-    width:60%;
+    width: 60%;
     background: #1E1E1E;
     color: white;
     display: flex;
@@ -9,7 +12,6 @@
     padding-left: 70px;
     text-align: left;
 }
-
 
 .left_section_black h2 {
     line-height: 1.4;
@@ -26,7 +28,9 @@
 }
 
 
-
+/* ============================= */
+/* SEÇÃO DIREITA (LOGIN FORM)   */
+/* ============================= */
 
 .right_section_email {
     width: 60%;
@@ -38,7 +42,11 @@
     padding: 60px;
 }
 
-/*Logo*/
+
+/* ============================= */
+/* LOGO                          */
+/* ============================= */
+
 .right_section_email img {
     width: 250px;
     position: absolute; 
@@ -46,31 +54,38 @@
     margin-bottom: 0; 
 }
 
-/* Ajuste para telas menores */
-@media (max-width: 768px) { 
+/* Responsividade para tablets e celulares */
+@media (max-width: 768px) {
     .right_section_email img {
-        width: 80%; 
-        max-width: 200px; 
+        width: 80%;
+        max-width: 200px;
     }
 }
 
-@media (max-width: 480px) { /* Para dispositivos com largura de tela de até 480px (ex. celulares) */
+@media (max-width: 480px) {
     .right_section_email img {
-        width: 70%; 
-        max-width: 150px; 
+        width: 70%;
+        max-width: 150px;
     }
 }
 
 
-/* Estilo para o título principal (h2) */
+/* ============================= */
+/* TÍTULO DO FORMULÁRIO         */
+/* ============================= */
+
 .right_section_email h2 {
     margin-bottom: 10px;
-    font-size: 38px; 
-    font-weight: 500; 
+    font-size: 38px;
+    font-weight: 500;
     color: #1E1E1E;
 }
 
-/* Form */
+
+/* ============================= */
+/* FORMULÁRIO DE LOGIN          */
+/* ============================= */
+
 form {
     display: flex;
     flex-direction: column;
@@ -79,16 +94,24 @@ form {
     max-width: 450px;
 }
 
-/*(label) */
+
+/* ============================= */
+/* LABELS                       */
+/* ============================= */
+
 label {
     text-align: left;
     font-weight: 500;
-    font-size: 18px; /* Ajuste do tamanho da fonte para os rótulos */
-    color: #1E1E1E; /* Cor do texto mais forte */
+    font-size: 18px;
+    color: #1E1E1E;
     margin-bottom: -10px;
 }
 
-/* Estilo do campo de entrada (input) */
+
+/* ============================= */
+/* INPUTS                       */
+/* ============================= */
+
 input {
     width: 100%;
     padding: 15px;
@@ -98,7 +121,11 @@ input {
     text-align: -10px;
 }
 
-/* Estilo do link de "Esqueceu a senha?" */
+
+/* ============================= */
+/* LINK "ESQUECEU A SENHA?"     */
+/* ============================= */
+
 a {
     text-decoration: none;
     font-size: 16px;
@@ -108,14 +135,17 @@ a {
 }
 
 a span {
-    color: #91050B; 
-    font-weight: 500; 
-    text-decoration: underline; /* Adiciona o sublinhado */
-    text-decoration-color: #91050B; 
+    color: #91050B;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #91050B;
 }
 
 
-/* Estilo do botão */
+/* ============================= */
+/* BOTÃO DE LOGIN               */
+/* ============================= */
+
 button {
     background: #91050B;
     color: white;
@@ -126,12 +156,12 @@ button {
     font-size: 16px;
     margin-top: 25px;
     width: auto;
-    display: block; /* Garante que o botão se comporte como um bloco */
-    margin-left: auto; 
+    display: block;
+    margin-left: auto;
     margin-right: auto;
 }
 
-/* Efeito de hover no botão */
+/* Hover no botão */
 button:hover {
     background: rgb(226, 3, 3);
 }

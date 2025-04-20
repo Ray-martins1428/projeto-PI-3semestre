@@ -15,7 +15,7 @@ class Mesas {
 
         } catch (error) {
             console.log("Erro ao executar a query", error)
-            return { validated: false, error: error }
+            return {validated: false, error: error}
         }
     }
 
@@ -26,12 +26,26 @@ class Mesas {
                 .where({ id_mesas: id, status: 1 })
                 .first()
             return mesa
-                ? { validated: true, values: mesa }
-                : { validated: true, values: undefined }
+                ? {validated: true, values: mesa}
+                : {validated: true, values: undefined}
         } catch (error) {
-            return { validated: false, error: error }
+            return {validated: false, error: error}
         }
     }
+
+    async create(descricao, ocupada, status){
+        try {
+            
+            await knex
+            .insert({descricao: descricao, ocupada: ocupada, status: status})
+            .table('produtos')
+            return{validated: true}
+
+        } catch (error) {
+            return {validated: false, error: error}
+        }
+    }
+
 }
 
 module.exports = new Mesas()

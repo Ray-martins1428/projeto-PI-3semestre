@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Configurações básicas -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título da aba do navegador -->
     <title>Maurinho Montanha</title>
+
+    <!-- Fonte personalizada do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../assets/imagens/principais/logo_maurinho_branca.png">
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/pages/login.css">
+
+    <!-- Ícone da aba -->
+    <link rel="icon" type="image/png" href="/assets/icones/logo_maurinho_branca.png">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/login.css">
+
+    <!-- Espaço reservado para script futuro -->
     <script src=""></script>
 </head>
+
 <body>
+    <!-- Seção da esquerda com fundo preto e frase -->
     <div class="left_section_black"> 
         <h2>
             <div class="h2-1">Do papel para o digital:</div>
@@ -18,26 +31,31 @@
         </h2>
     </div>
 
-<div class="right_section_email">
-    <img src="../assets/imagens/principais/logo_maurinho_preta.png" alt="Maurinho Montanha Lanches">
-    
-    <h2>Acesse seu Sistema</h2>
-    
-    <form id="login-form" action="main.html" method="">
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Coloque seu Email" required>
+    <!-- Seção da direita com formulário de login -->
+    <div class="right_section_email">
+        <img src="/assets/imagens/logo_maurinho_preta.png" alt="Maurinho Montanha Lanches">
         
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" placeholder="Sua Senha" required>
+        <h2>Acesse seu Sistema</h2>
         
-        <!-- Texto de link com div -->
-        <div class="password-reset">
-            Esqueceu a senha? <a href="https://api.whatsapp.com/send/?phone=5519993887230&text&type=phone_number&app_absent=0" target="_blank"><span>Fale Conosco</span></a>
-        </div>
-        
-        <button type="submit">Login</button>
-    </form>
-</div>
-
+        <!-- Formulário de login -->
+        <form id="login-form" action="mesas.html" method="">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Coloque seu Email" required>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" placeholder="Sua Senha" required>
+            
+            <!-- Link de recuperação de senha via WhatsApp -->
+            <div class="password-reset">
+                Esqueceu a senha? 
+                <a href="https://api.whatsapp.com/send/?phone=5519993887230&text&type=phone_number&app_absent=0" target="_blank">
+                    <span>Fale Conosco</span>
+                </a>
+            </div>
+            
+            <!-- Botão de envio -->
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
 </html>

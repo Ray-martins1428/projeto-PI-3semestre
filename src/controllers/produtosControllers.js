@@ -9,7 +9,7 @@ class produtosControllers {
         :res.status(200).json({success:true, values: result.values})
     }
 
-// -----------------------------------------------------------------------------
+// ----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID-----------------
 
     async findById(req, res) {
         const id = req.params.id
@@ -19,7 +19,7 @@ class produtosControllers {
             : res.status(200).json({ success: true, values: result.values })
     }
 
-// -----------------------------------------------------------------------------
+// ----------NEW----------NEW----------NEW----------NEW----------NEW----------NEW-----------------
 
     async new(req, res){
         let {nome, descricao, volume, valor} = req.body
@@ -31,7 +31,34 @@ class produtosControllers {
         : res.status(404).json({sucess: false, message: result.error})
     }
 
-// -----------------------------------------------------------------------------
+// ----------EDIT----------EDIT----------EDIT----------EDIT----------EDIT----------EDIT-----------------
+
+    async editProduto(req, res){
+        let id = req.params.id
+        let {nome, descricao, volume, valor} = req.body
+        if(isNaN(id)){
+            res.status(404).json({success: false, message: "Parametro inválido"})
+        } else{
+            let result = await produtos.updade(nome, descricao, volume, valor)
+            result.validated
+            ? res.status(200).json ({success: true, message: result.message})
+            : res.status(406).json ({success: false, message: result.error}) 
+        }
+    }
+
+// ----------REMOVE----------REMOVE----------REMOVE----------REMOVE----------REMOVE----------REMOVE-----------------
+
+        async remove(req, res){
+            let id = req.params.id
+            if(isNaN(id)){
+                res.status(404).json({success: false, message: "Parametro inválido"})
+            } else{
+                let result = await produtos.delete(id)
+                result.validated
+                ? res.status(200).json ({success: true, message: result.message})
+                : res.status(406).json ({success: false, message: result.error}) 
+            }
+        }
 
 }
 

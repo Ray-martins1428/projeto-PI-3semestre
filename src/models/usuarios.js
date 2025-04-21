@@ -19,7 +19,7 @@ class Usuarios {
         }
     }
 
-// -----------------------------------------------------------------------------
+// ----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID-----------------
 
     async findById(id) {
         try {
@@ -35,7 +35,7 @@ class Usuarios {
         }
     }
 
-// -----------------------------------------------------------------------------
+// ----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE-----------------
 
     async create(login, senha, status){
         try {
@@ -50,7 +50,7 @@ class Usuarios {
         }
     }
 
-// -----------------------------------------------------------------------------
+// ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
 
     async updade(login){
         let usuarios = await this.findById(id)
@@ -72,6 +72,26 @@ class Usuarios {
 
         }else{
             return{validated: false, error: "Usuário não existente, portanto não pode ser editado!"}
+        }
+    }
+
+// ----------DELETE----------DELETE----------DELETE----------DELETE----------DELETE----------DELETE-----------------
+
+    async delete(id){
+        let usuarios = await this.findById(id)
+        if (usuarios.values != undefined) {
+
+            try{
+                await knex
+                .delete()
+                .where({id_usuarios:id})
+                .table('usuarios')
+                return {validated: true, message: "Usuário deletado com sucesso!!"}
+            } catch (error) {
+                return ({validated: false, error: error})
+            }
+        } else {
+            return{validated: false, error: "Usuário não existente, portanto não pode ser editado!"} 
         }
     }
 

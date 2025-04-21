@@ -1,4 +1,5 @@
 const knex = require('../config/data')  
+const usuarios = require('./usuarios')
 
 class Produtos {
 
@@ -19,7 +20,7 @@ class Produtos {
         }
     }
 
-// -----------------------------------------------------------------------------
+// ----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID-----------------
 
     async findById(id) {
         try {
@@ -35,7 +36,7 @@ class Produtos {
         }
     }
 
-// -----------------------------------------------------------------------------
+// ----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE-----------------
 
     async create(nome, descricao, volume, valor){
         try {
@@ -50,7 +51,52 @@ class Produtos {
         }
     }
 
-    // -----------------------------------------------------------------------------
+// ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
+
+    async updade(nome, descricao, volume, valor){
+        let usuarios = await this.findById(id)
+        if(usuarios.values != undefined){
+
+            let editProduto = {}
+            nome != undefined ? editProduto.nome = nome : null
+            descricao != undefined ? editProduto.descricao = descricao : null
+            volume != undefined ? editProduto.volume = volume : null
+            valor != undefined ? editProduto.valor = valor : null
+
+            try{
+                await knex
+                .update(editProduto)
+                .where({id_produtos:id})
+                .table('produtos')
+                return {validated: true, message: "Usuário editado com sucesso!"}
+
+            } catch(error) {
+                return {validated: false, error: error}
+            }
+
+        }else{
+            return{validated: false, error: "Usuário não existente, portanto não pode ser editado!"}
+        }
+    }
+
+// ----------DELETE----------DELETE----------DELETE----------DELETE----------DELETE----------DELETE-----------------
+
+    async delete(id) {
+        let produtos = await this.findById(id)
+        if (produtos.values != undefined) {
+            try {
+                await knex
+                .delete()
+                .where({id_produtos:id})
+                .table('produtos')
+                return{validated:true, message:"Produto deletado com sucesso!!"}
+            } catch (error){
+                return{validated:false, error: error}
+            }
+        } else{
+           return {validated: false, error: "PRoduto não existente, por tanto não será editado!"} 
+        }
+    }
 
 }
 

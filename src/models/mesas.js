@@ -19,6 +19,8 @@ class Mesas {
         }
     }
 
+// ----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID----------FIND_ID-----------------
+
     async findById(id) {
         try {
             const mesa = await knex('mesas')
@@ -33,6 +35,8 @@ class Mesas {
         }
     }
 
+// ----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE-----------------
+
     async create(descricao, ocupada, status){
         try {
             
@@ -46,6 +50,51 @@ class Mesas {
         }
     }
 
+// ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
+
+    async updade(descricao, status){
+        let mesas = await this.findById(id)
+        if(mesas.values != undefined){
+
+            let editMesa = {}
+            descricao != undefined ? editMesa.descricao = descricao : null
+            status != undefined ? editMesa.status = status : null
+
+            try{
+                await knex
+                .update(editMesa)
+                .where({id_mesas:id})
+                .table('mesas')
+                return {validated: true, message: "Mesa editada com sucesso!"}
+
+            } catch(error) {
+                return {validated: false, error: error}
+            }
+
+        }else{
+            return{validated: false, error: "Mesa não existente, portanto não pode ser editada!"}
+        }
+    }
+
+// ----------DELETE----------DELETE----------DELETE----------DELETE----------DELETE----------DELETE-----------------
+
+    async delete(id){
+        let mesas = await this.findById(id)
+        if (mesas.values != undefined) {
+
+            try{
+                await knex
+                .delete()
+                .where({id_mesas:id})
+                .table('mesas')
+                return {validated: true, message: "Mesa deletada com sucesso!!"}
+            } catch (error) {
+                return ({validated: false, error: error})
+            }
+        } else {
+            return{validated: false, error: "Mesa não existente, portanto não pode ser editada!"} 
+        }
+    }
 }
 
 module.exports = new Mesas()

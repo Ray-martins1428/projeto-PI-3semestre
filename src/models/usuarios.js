@@ -25,7 +25,7 @@ class Usuarios {
         try {
             const usuarios = await knex('usuarios')
                 .select(['login', 'senha', 'status'])
-                .where({ id_usuarios: id, status: 1 })
+                .where({ id_usuario: id, status: 1 })
                 .first()
             return usuarios
                 ? {validated: true, values: usuarios}

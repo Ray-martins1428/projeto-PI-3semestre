@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {router} = require('../api')
+
 
 // ----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS-----------------
 

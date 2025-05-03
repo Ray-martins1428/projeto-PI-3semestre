@@ -14,9 +14,34 @@ class usuariosControllers {
     async findById(req, res) {
         const id_usuario = req.params.id
         const result = await usuarios.findById(id_usuario)
-        !result.validated
-            ? res.status(404).json({ success: false, error: result.error })
-            : res.status(200).json({ success: true, values: result.values })
+
+        if (!result.validated || !result.values) {
+            return res.status(404).json({ success: false, error: result.error || 'Usuário não encontrado.' })
+        }
+
+        return res.status(200).json({ success: true, values: result.values })
+    }
+
+// ----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------
+
+    async findByLogin(req, res) {
+        const { login } = req.params
+
+        if (!login) {
+            return res.status(400).json({ success: false, message: "Login não informado." })
+        }
+
+        const result = await usuarios.findByLogin(login)
+
+        if (!result.validated) {
+            return res.status(500).json({ success: false, error: result.error })
+        }
+
+        if (!result.values) {
+            return res.status(404).json({ success: false, message: "Usuário não encontrado." })
+        }
+
+        return res.status(200).json({ success: true, values: result.values })
     }
 
 // ----------NEW----------NEW----------NEW----------NEW----------NEW----------NEW-----------------

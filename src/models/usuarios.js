@@ -35,6 +35,24 @@ class Usuarios {
         }
     }
 
+// ----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN--------------------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------
+
+    async findByLogin(login) {
+        try {
+            const usuario = await knex('usuarios')
+                .select(['login', 'senha'])
+                .where({ login: login, status: 1 })
+                .first()
+
+            return usuario
+                ? { validated: true, values: usuario }
+                : { validated: true, values: undefined }
+
+        } catch (error) {
+            return { validated: false, error: error }
+        }
+    }
+
 // ----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE-----------------
 
     async create(login, senha, status){

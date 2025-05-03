@@ -20,6 +20,8 @@ const usuariosControllers = require('../controllers/usuariosControllers')
 
 router.get('/usuarios', usuariosControllers.listAll)
 router.get('/usuarios/:id', usuariosControllers.findById)
+router.get('/usuarios/login/:login', usuariosControllers.findByLogin)
+
 
 router.post('/usuarios', usuariosControllers.new)
 

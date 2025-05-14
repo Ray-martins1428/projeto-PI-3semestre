@@ -53,7 +53,7 @@ class Produtos {
 
 // ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
 
-    async updade(id, nome, descricao, volume, valor){
+    async update(id, nome, descricao, volume, valor){
         let usuarios = await this.findById(id)
         if(usuarios.values != undefined){
 

@@ -52,7 +52,7 @@ class Mesas {
 
 // ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
 
-    async updade(descricao, status){
+    async update(descricao, status){
         let mesas = await this.findById(id)
         if(mesas.values != undefined){
 

@@ -39,12 +39,12 @@ class Usuarios {
 
     async findByLogin(login) {
         try {
-            const usuario = await knex('usuarios')
+            const usuarios = await knex('usuarios')
                 .select(['login', 'senha'])
                 .where({ login: login, status: 1 })
                 .first()
 
-            return usuario
+            return usuarios
                 ? { validated: true, values: usuario }
                 : { validated: true, values: undefined }
 
@@ -70,9 +70,9 @@ class Usuarios {
 
 // ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
 
-    async updade(login){
-        let usuarios = await this.findById(id)
-        if(usuarios.values != undefined){
+    async update(login){
+        let usuarios = await this.findById(id, login)
+        if(usuarios){
 
             let editUsuario = {}
             login != undefined ? editUsuario.login = login : null

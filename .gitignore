@@ -1,6 +1,4 @@
 node_modules/
 .env
-frmPagamentos.js
-frmPagamentosControllers.js
 compare_password_service.js
 hash_password_service.js

@@ -21,7 +21,7 @@ const usuariosControllers = require('../controllers/usuariosControllers')
 router.get('/usuarios', usuariosControllers.listAll)
 router.get('/usuarios/:id', usuariosControllers.findById)
 router.get('/usuarios/login/:login', usuariosControllers.findByLogin)
-
+// http://localhost:4050/usuarios/login/nome_do_usuario
 
 router.post('/usuarios', usuariosControllers.new)
 
@@ -39,6 +39,19 @@ router.post('/mesas', mesasControllers.new)
 
 router.put('/mesas/:id', mesasControllers.editMesa)
 router.delete('/mesas/:id', mesasControllers.remove)
+
+// ----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS-----------------
+
+const frmPagamentosControllers = require('../controllers/frmPagamentosControllers')
+
+router.get('/formas', frmPagamentosControllers.listAll)
+router.get('/formas/:id', frmPagamentosControllers.findById)
+
+// ----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN-----------------
+
+const loginControllers = require('../controllers/loginControllers')
+
+router.post('/login', loginControllers.login)
 
 // -----------------------------------------------------------------------------
 

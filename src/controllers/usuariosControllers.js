@@ -22,7 +22,7 @@ class usuariosControllers {
         return res.status(200).json({ success: true, values: result.values })
     }
 
-// ----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------
+// ----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------FIND_BY_LOGIN----------
 
     async findByLogin(req, res) {
         const { login } = req.params
@@ -47,9 +47,9 @@ class usuariosControllers {
 // ----------NEW----------NEW----------NEW----------NEW----------NEW----------NEW-----------------
 
     async new(req, res){
-        let {login, senha, status} = req.body
+        let {login, senha, nivel_usuario, status} = req.body
         
-        let result = await usuarios.create(login, senha, status)
+        let result = await usuarios.create(login, senha, nivel_usuario, status)
 
         result.validated
         ? res.status(201).json({sucess: true, message:'Usuário cadastrado com sucesso.'})
@@ -60,11 +60,11 @@ class usuariosControllers {
 
     async editUsuario(req, res){
         let id = req.params.id
-        let {login} = req.body
+        let {login, senha, nivel_usuario, status} = req.body
         if(isNaN(id)){
             res.status(404).json({success: false, message: "Parametro inválido"})
         } else{
-            let result = await usuarios.updade(login)
+            let result = await usuarios.update(id, login, senha, nivel_usuario, status)
             result.validated
             ? res.status(200).json ({success: true, message: result.message})
             : res.status(406).json ({success: false, message: result.error}) 

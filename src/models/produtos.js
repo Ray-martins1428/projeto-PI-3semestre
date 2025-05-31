@@ -6,7 +6,7 @@ class Produtos {
     async findAll() {
         try {
             let produtos = await knex
-                .select(['nome','descricao','volume','valor'])
+                .select(['id_produtos', 'nome','descricao','volume','valor'])
                 .table('produtos')
                 .where({status:1})
 
@@ -53,7 +53,7 @@ class Produtos {
 
 // ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
 
-    async updade(id, nome, descricao, volume, valor){
+    async update(id, nome, descricao, volume, valor){
         let usuarios = await this.findById(id)
         if(usuarios.values != undefined){
 

@@ -39,7 +39,7 @@ class mesasControllers {
         if(isNaN(id)){
             res.status(404).json({success: false, message: "Parametro inválido"})
         } else{
-            let result = await mesas.updade(descricao, status)
+            let result = await mesas.update(descricao, status)
             result.validated
             ? res.status(200).json ({success: true, message: result.message})
             : res.status(406).json ({success: false, message: result.error}) 

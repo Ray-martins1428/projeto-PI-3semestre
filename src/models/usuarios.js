@@ -1,11 +1,13 @@
 const knex = require('../config/data')
+const hashPasswordService = require('../services/hashPasswordService')
+const hashPassword = require('../services/hashPasswordService')
 
 class Usuarios {
 
     async findAll() {
         try{
             let usuarios = await knex
-                .select(['login', 'senha', 'status'])
+                .select(['id_usuario', 'login', 'senha','nivel_usuario', 'status'])
                 .table('usuarios')
                 .where({status:1})
 
@@ -24,7 +26,7 @@ class Usuarios {
     async findById(id) {
         try {
             const usuarios = await knex('usuarios')
-                .select(['login', 'senha', 'status'])
+                .select(['login', 'senha','nivel_usuario', 'status'])
                 .where({ id_usuario: id, status: 1 })
                 .first()
             return usuarios
@@ -40,7 +42,7 @@ class Usuarios {
     async findByLogin(login) {
         try {
             const usuario = await knex('usuarios')
-                .select(['login', 'senha'])
+                .select(['login', 'senha', 'nivel_usuario'])
                 .where({ login: login, status: 1 })
                 .first()
 
@@ -55,11 +57,12 @@ class Usuarios {
 
 // ----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE----------CREATE-----------------
 
-    async create(login, senha, status){
+    async create(login, senha, nivel_usuario, status){
         try {
+            const senhaHash = hashPasswordService(senha)
             
             await knex
-            .insert({login: login, senha: senha, status: status})
+            .insert({login: login, senha: senhaHash, nivel_usuario: nivel_usuario, status: status})
             .table('usuarios')
             return{validated: true}
 
@@ -70,17 +73,20 @@ class Usuarios {
 
 // ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
 
-    async updade(login){
+    async update(id, login, senha, nivel_usuario, status){
         let usuarios = await this.findById(id)
         if(usuarios.values != undefined){
 
             let editUsuario = {}
             login != undefined ? editUsuario.login = login : null
+            senha !== undefined ? editUsuario.senha = senha : null
+            nivel_usuario !== undefined ? editUsuario.nivel_usuario = nivel_usuario : null
+            status !== undefined ? editUsuario.status = status : null
 
             try{
                 await knex
                 .update(editUsuario)
-                .where({id_usuarios:id})
+                .where({id_usuario:id})
                 .table('usuarios')
                 return {validated: true, message: "Usuário editado com sucesso!"}
 

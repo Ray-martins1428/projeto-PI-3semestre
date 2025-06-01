@@ -60,6 +60,84 @@ class mesasControllers {
         }
     }
 
+// ----------ADD_PRODUTO_MESA----------ADD_PRODUTO_MESA----------ADD_PRODUTO_MESA----------ADD_PRODUTO_MESA----------ADD_PRODUTO_MESA----------ADD_PRODUTO_MESA-----------------
+
+    async adicionarProdutosNaMesa(req, res) {
+        const idMesa = parseInt(req.params.id);
+        const { produtos } = req.body;
+
+        if (isNaN(idMesa)) {
+            return res.status(400).json({ success: false, message: "ID de mesa inválido." });
+        }
+
+        if (!Array.isArray(produtos) || produtos.length === 0) {
+            return res.status(400).json({ success: false, message: "Produtos inválidos." });
+        }
+
+        const result = await mesas.adicionarProdutosNaMesa(idMesa, produtos);
+
+        if (!result.validated) {
+            return res.status(500).json({ success: false, message: result.error });
+        }
+
+        return res.status(200).json({ success: true, message: result.message });
+    }
+
+// ----------LISTAR_PRODUTO_MESA----------LISTAR_PRODUTO_MESA----------LISTAR_PRODUTO_MESA----------LISTAR_PRODUTO_MESA----------LISTAR_PRODUTO_MESA----------LISTAR_PRODUTO_MESA-----------------
+
+    async listarProdutosDaMesa(req, res) {
+        const idMesa = parseInt(req.params.id);
+
+        if (isNaN(idMesa)) {
+            return res.status(400).json({ success: false, message: "ID da mesa inválido." });
+        }
+
+        const result = await mesas.listarProdutosDaMesa(idMesa);
+
+        if (!result.validated) {
+            return res.status(500).json({ success: false, message: result.error });
+        }
+
+        return res.status(200).json({ success: true, produtos: result.values });
+    }
+
+// ----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA-----------------
+
+    async removerProdutoDaMesa(req, res) {
+        const idMesa = parseInt(req.params.id);
+        const idProduto = parseInt(req.params.id_produto);
+
+        if (isNaN(idMesa) || isNaN(idProduto)) {
+            return res.status(400).json({ success: false, message: "Parâmetros inválidos." });
+        }
+
+        const result = await mesas.removerProdutoDaMesa(idMesa, idProduto);
+
+        if (!result.validated) {
+            return res.status(404).json({ success: false, message: result.error });
+        }
+
+        return res.status(200).json({ success: true, message: result.message });
+    }
+
+// ----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA-----------------
+
+    async fecharMesa(req, res) {
+        const idMesa = parseInt(req.params.id);
+
+        if (isNaN(idMesa)) {
+            return res.status(400).json({ success: false, message: "ID da mesa inválido." });
+        }
+
+        const result = await mesas.fecharMesa(idMesa);
+
+        if (!result.validated) {
+            return res.status(400).json({ success: false, message: result.error });
+        }
+
+        return res.status(200).json({ success: true, message: result.message });
+    }
+
 
 }
 

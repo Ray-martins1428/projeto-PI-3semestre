@@ -54,8 +54,8 @@ class Produtos {
 // ----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE----------UPDATE-----------------
 
     async update(id, nome, descricao, volume, valor){
-        let usuarios = await this.findById(id)
-        if(usuarios.values != undefined){
+        let produtos = await this.findById(id)
+        if(produtos.values != undefined){
 
             let editProduto = {}
             nome != undefined ? editProduto.nome = nome : null

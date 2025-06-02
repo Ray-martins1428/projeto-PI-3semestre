@@ -34,7 +34,7 @@ class produtosControllers {
 // ----------EDIT----------EDIT----------EDIT----------EDIT----------EDIT----------EDIT-----------------
 
     async editProduto(req, res){
-        let id = req.params
+        let id = req.params.id
         let {nome, descricao, volume, valor} = req.body
         if(isNaN(id)){
             res.status(404).json({success: false, message: "Parametro inválido"})

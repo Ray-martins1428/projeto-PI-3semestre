@@ -79,7 +79,7 @@ class Usuarios {
 
             let editUsuario = {}
             login != undefined ? editUsuario.login = login : null
-            senha !== undefined ? editUsuario.senha = senha : null
+            senha !== undefined ? editUsuario.senha = hashPasswordService(senha) : null
             nivel_usuario !== undefined ? editUsuario.nivel_usuario = nivel_usuario : null
             status !== undefined ? editUsuario.status = status : null
 
@@ -108,7 +108,7 @@ class Usuarios {
             try{
                 await knex
                 .delete()
-                .where({id_usuarios:id})
+                .where({id_usuario:id})
                 .table('usuarios')
                 return {validated: true, message: "Usuário deletado com sucesso!!"}
             } catch (error) {

@@ -2,73 +2,75 @@ const express = require('express')
 const router = express.Router()
 
 
+// ----------MIDDLEWARES----------MIDDLEWARES----------MIDDLEWARES----------MIDDLEWARES----------MIDDLEWARES----------MIDDLEWARES-----------------
+const auth = require('../middlewares/authUsuarioMiddleware');
+const verifyMaster = require('../middlewares/verifyMaster');
+const verifyAdm = require('../middlewares/verifyAdm');
+const verifySimple = require('../middlewares/verifySimple');
+
+// ----------CONTROLLERS----------CONTROLLERS----------CONTROLLERS----------CONTROLLERS----------CONTROLLERS----------CONTROLLERS-----------------
+const produtosControllers = require('../controllers/produtosControllers');
+const usuariosControllers = require('../controllers/usuariosControllers');
+const mesasControllers = require('../controllers/mesasControllers');
+const frmPagamentosControllers = require('../controllers/frmPagamentosControllers');
+const loginControllers = require('../controllers/loginControllers');
+
 // ----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS----------ROTAS_PRODUTOS-----------------
 
-const produtosControllers = require('../controllers/produtosControllers')
-
-router.get('/produtos', produtosControllers.listAll)
-router.get('/produtos/:id', produtosControllers.findById)
+router.get('/produtos', auth, produtosControllers.listAll);
+router.get('/produtos/:id', auth, produtosControllers.findById);
 
 
-router.post('/produtos', produtosControllers.new)
+router.post('/produtos', auth, verifyAdm, produtosControllers.new);
 
 
-router.put('/produtos/:id', produtosControllers.editProduto)
+router.put('/produtos/:id', auth, verifyAdm, produtosControllers.editProduto);
 
 
-router.delete('/produtos/:id', produtosControllers.remove)
+router.delete('/produtos/:id', auth, verifyAdm, produtosControllers.remove);
 
 // ----------ROTAS_USUARIOS----------ROTAS_USUARIOS----------ROTAS_USUARIOS----------ROTAS_USUARIOS----------ROTAS_USUARIOS----------ROTAS_USUARIOS-----------------
 
-const usuariosControllers = require('../controllers/usuariosControllers')
-
-router.get('/usuarios', usuariosControllers.listAll)
-router.get('/usuarios/:id', usuariosControllers.findById)
-router.get('/usuarios/login/:login', usuariosControllers.findByLogin)
-// http://localhost:4050/usuarios/login/nome_do_usuario
+router.get('/usuarios', auth, verifySimple, usuariosControllers.listAll);
+router.get('/usuarios/:id', auth, verifyAdm, usuariosControllers.findById);
+router.get('/usuarios/login/:login', auth, verifyAdm, usuariosControllers.findByLogin);
 
 
-router.post('/usuarios', usuariosControllers.new)
+router.post('/usuarios', auth, verifyMaster, usuariosControllers.new);
 
 
-router.put('/usuarios/:id', usuariosControllers.editUsuario)
+router.put('/usuarios/:id', auth, verifyAdm, usuariosControllers.editUsuario);
 
 
-router.delete('/usuarios/:id', usuariosControllers.remove)
+router.delete('/usuarios/:id', auth, verifyAdm, usuariosControllers.remove);
 
 // ----------ROTAS_MESAS----------ROTAS_MESAS----------ROTAS_MESAS----------ROTAS_MESAS----------ROTAS_MESAS----------ROTAS_MESAS-----------------
 
-const mesasControllers = require('../controllers/mesasControllers')
-
-router.get('/mesas', mesasControllers.listAll)
-router.get('/mesas/:id', mesasControllers.findById)
-router.get('/mesas/:id/produtos', mesasControllers.listarProdutosDaMesa);
+router.get('/mesas', auth, verifySimple, mesasControllers.listAll);
+router.get('/mesas/:id', auth, verifySimple, mesasControllers.findById);
+router.get('/mesas/:id/produtos', auth, verifySimple, mesasControllers.listarProdutosDaMesa);
 
 
-router.post('/mesas', mesasControllers.new)
-router.post('/mesas/:id/adicionar-produtos', mesasControllers.adicionarProdutosNaMesa);
-router.post('/mesas/:id/fechar', mesasControllers.fecharMesa);
+router.post('/mesas', auth, verifyAdm, mesasControllers.new);
+router.post('/mesas/:id/adicionar-produtos', auth, verifyAdm, mesasControllers.adicionarProdutosNaMesa);
+router.post('/mesas/:id/fechar', auth, verifyAdm, mesasControllers.fecharMesa);
 
 
-router.put('/mesas/:id', mesasControllers.editMesa)
+router.put('/mesas/:id', auth, verifyAdm, mesasControllers.editMesa);
 
 
-router.delete('/mesas/:id', mesasControllers.remove)
-router.delete('/mesas/:id/produtos/:id_produto', mesasControllers.removerProdutoDaMesa);
+router.delete('/mesas/:id', auth, verifyAdm, mesasControllers.remove);
+router.delete('/mesas/:id/produtos/:id_produto', auth, verifyAdm, mesasControllers.removerProdutoDaMesa);
 
 // ----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS----------ROTAS_FORMA_PAGAMENTOS-----------------
 
-const frmPagamentosControllers = require('../controllers/frmPagamentosControllers')
-
-router.get('/formas', frmPagamentosControllers.listAll)
-router.get('/formas/:id', frmPagamentosControllers.findById)
+router.get('/formas', auth, verifySimple, frmPagamentosControllers.listAll);
+router.get('/formas/:id', auth, verifySimple, frmPagamentosControllers.findById);
 
 // ----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN----------ROTAS_LOGIN-----------------
 
-const loginControllers = require('../controllers/loginControllers')
-
 router.post('/login', loginControllers.login)
 
-// -----------------------------------------------------------------------------
+// ----------- EXPORTAÇÃO -----------
 
 module.exports = router

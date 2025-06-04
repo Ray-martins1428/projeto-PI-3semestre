@@ -120,7 +120,7 @@ class mesasControllers {
         return res.status(200).json({ success: true, message: result.message });
     }
 
-// ----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA----------REMOVER_PRODUTO_MESA-----------------
+// ----------FECHAR_MESA----------FECHAR_MESA----------FECHAR_MESA----------FECHAR_MESA----------FECHAR_MESA----------FECHAR_MESA-----------------
 
     async fecharMesa(req, res) {
         const idMesa = parseInt(req.params.id);
